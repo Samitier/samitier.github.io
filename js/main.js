@@ -1,28 +1,56 @@
+var scene, camera, renderer;
+var cube;
+var rotx, roty, mousex, mousey, mouseDown;
 
-var scene = new THREE.Scene();
-var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-var renderer = new THREE.WebGLRenderer();
-renderer.setSize( window.innerWidth, window.innerHeight );
-document.body.appendChild( renderer.domElement );
+function init() {
+   scene = new THREE.Scene();
+   camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+   renderer = new THREE.WebGLRenderer();
+   renderer.setSize( window.innerWidth, window.innerHeight );
+   document.body.appendChild( renderer.domElement );
 
-var light = new THREE.PointLight(0xEEEEEE);
-light.position.set(20, 0, 20);
-scene.add(light);
+   var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+   var texture = THREE.ImageUtils.loadTexture( 'txt.png' );
+   var material = new THREE.MeshBasicMaterial( {map: texture } );
+   cube = new THREE.Mesh( geometry, material );
+   scene.add( cube );
+   camera.position.z = 1.4;
 
-var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-var texture = THREE.ImageUtils.loadTexture( 'txt.png' );
-var material = new THREE.MeshBasicMaterial( {map: texture } );
-var cube = new THREE.Mesh( geometry, material );
-scene.add( cube );
-camera.position.z = 1.4;
-render();
+   rotx = roty =  mousex= mousey=0;
+   mouseDown = false;
+
+   renderer.domElement.addEventListener( 'mousemove', onMouseMove );
+   renderer.domElement.addEventListener( 'mousedown', onMouseDown );
+   renderer.domElement.addEventListener( 'mouseup', onMouseUp );
+
+   render();
+}
 
 function render() {
    requestAnimationFrame( render );
 
-   cube.rotation.x += 0.01;
-   cube.rotation.y += 0.005;
+   cube.rotation.x = rotx;
+   cube.rotation.y = roty;
 
    renderer.setClearColor( 0xffffff, 1);
    renderer.render( scene, camera );
+}
+
+function onMouseMove( event ) {
+   if(mouseDown) {
+      roty += (event.x-mousex)*0.01;
+      rotx += (event.y-mousey)*0.01;
+      mousex = event.x;
+      mousey = event.y;
+   }
+}
+
+function onMouseDown( event ) {
+   mousex = event.x;
+   mousey = event.y;
+   mouseDown = true;
+}
+
+function onMouseUp( event ) {
+   mouseDown = false;
 }
