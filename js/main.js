@@ -23,6 +23,10 @@ function init() {
    renderer.domElement.addEventListener( 'mousedown', onMouseDown );
    renderer.domElement.addEventListener( 'mouseup', onMouseUp );
 
+   renderer.domElement.addEventListener( 'touchstart', onTouchStart);
+   renderer.domElement.addEventListener( 'touchmove', onTouchMove);
+
+
    render();
 }
 
@@ -53,4 +57,17 @@ function onMouseDown( event ) {
 
 function onMouseUp( event ) {
    mouseDown = false;
+}
+
+function onTouchStart (event) {
+   console.dir(event);
+   mousex = event.touches[0].screenX;
+   mousey = event.touches[0].screenY;
+}
+
+function onTouchMove (event) {
+   roty += (event.touches[0].screenX-mousex)*0.01;
+   rotx += (event.touches[0].screenY-mousey)*0.01;
+   mousex = event.touches[0].screenX;
+   mousey = event.touches[0].screenY;
 }
