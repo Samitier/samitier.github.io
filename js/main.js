@@ -1,9 +1,26 @@
-var scene, camera, renderer;
-var cube;
+var MAX_ROTATION = 1.5708;
+var background, backgroundScene, backgroundCam;
+var cube, scene, camera;
+var renderer;
 var rotx, roty, mousex, mousey, mouseDown,axisRotating;
 
 function init() {
    if(Modernizr.webgl && Modernizr.canvas) {
+      //BACKGROUND
+      var backgroundTexture = THREE.ImageUtils.loadTexture( 'bkg.png' );
+      background = new THREE.Mesh(
+         new THREE.PlaneGeometry(2, 2, 0),
+         new THREE.MeshBasicMaterial({map: backgroundTexture})
+      );
+      background.material.depthTest = false;
+      background.material.depthWrite = false;
+
+      backgroundScene = new THREE.Scene();
+      backgroundCam = new THREE.Camera();
+      backgroundScene.add(backgroundCam);
+      backgroundScene.add(background);
+
+      //CUBE
       scene = new THREE.Scene();
       camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
       renderer = new THREE.WebGLRenderer();
@@ -40,7 +57,9 @@ function render() {
    cube.rotation.x = rotx;
    cube.rotation.y = roty;
 
-   renderer.setClearColor( 0xffffff, 1);
+   renderer.autoClear = false;
+   renderer.clear();
+   renderer.render(backgroundScene, backgroundCam);
    renderer.render( scene, camera );
 }
 
