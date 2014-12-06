@@ -1,6 +1,6 @@
 var scene, camera, renderer;
 var cube;
-var rotx, roty, mousex, mousey, mouseDown;
+var rotx, roty, mousex, mousey, mouseDown,axisRotating;
 
 function init() {
    if(Modernizr.webgl && Modernizr.canvas) {
@@ -19,6 +19,7 @@ function init() {
 
       rotx = roty =  mousex= mousey=0;
       mouseDown = false;
+      axisRotating = "none";
 
       if (Modernizr.touch) {
          renderer.domElement.addEventListener( 'touchstart', onTouchStart);
@@ -46,13 +47,18 @@ function render() {
 ///EVENTS///
 function onMouseMove( event ) {
    if(mouseDown) {
-      roty += (event.x-mousex)*0.01;
-      rotx += (event.y-mousey)*0.01;
+      if(axisRotating =="none") {
+         if(event.x != mousex && event.y == mousey) axisRotating = "y";
+         else if(event.x == mousex && event.y != mousey) axisRotating = "x";
+      }
+      else if (axisRotating == "x") rotx += (event.y-mousey)*0.005;
+      else if (axisRotating == "y") roty += (event.x-mousex)*0.005;
       mousex = event.x;
       mousey = event.y;
    }
 }
 function onMouseDown( event ) {
+   axisRotating = "none";
    mousex = event.x;
    mousey = event.y;
    mouseDown = true;
@@ -61,12 +67,17 @@ function onMouseUp( event ) {
    mouseDown = false;
 }
 function onTouchStart (event) {
+   axisRotating = "none";
    mousex = event.touches[0].screenX;
    mousey = event.touches[0].screenY;
 }
 function onTouchMove (event) {
-   roty += (event.touches[0].screenX-mousex)*0.01;
-   rotx += (event.touches[0].screenY-mousey)*0.01;
+   if(axisRotating =="none") {
+      if(event.touches[0].screenX != mousex && event.touches[0].screenY == mousey) axisRotating = "y";
+      else if(event.touches[0].screenX == mousex && event.touches[0].screenY != mousey) axisRotating = "x";
+   }
+   else if (axisRotating == "x") rotx += (event.touches[0].screenY-mousey)*0.01;
+   else if (axisRotating == "y") roty += (event.touches[0].screenX-mousex)*0.01;
    mousex = event.touches[0].screenX;
    mousey = event.touches[0].screenY;
 }
