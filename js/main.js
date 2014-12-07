@@ -3,7 +3,6 @@ var background, backgroundScene, backgroundCam;
 var cube, scene, camera;
 var renderer;
 var rotx, roty, mousex, mousey, mouseDown,axisRotating;
-var returning;
 
 function init() {
    if(Modernizr.webgl && Modernizr.canvas) {
@@ -38,12 +37,12 @@ function init() {
       rotx = roty =  mousex= mousey=0;
       mouseDown = false;
       axisRotating = "none";
-      returning = false;
 
       window.addEventListener( 'resize', onResize, false );
       if (Modernizr.touch) {
          renderer.domElement.addEventListener( 'touchstart', onTouchStart);
          renderer.domElement.addEventListener( 'touchmove', onTouchMove);
+         renderer.domElement.addEventListener( 'touchend', onTouchEnd);
       } else {
          renderer.domElement.addEventListener( 'mousemove', onMouseMove );
          renderer.domElement.addEventListener( 'mousedown', onMouseDown );
@@ -110,6 +109,7 @@ function onTouchStart (event) {
    axisRotating = "none";
    mousex = event.touches[0].screenX;
    mousey = event.touches[0].screenY;
+   mouseDown = true;
 }
 function onTouchMove (event) {
    if(axisRotating =="none") {
@@ -120,6 +120,10 @@ function onTouchMove (event) {
    else if (axisRotating == "y") roty += (event.touches[0].screenX-mousex)*0.01;
    mousex = event.touches[0].screenX;
    mousey = event.touches[0].screenY;
+}
+
+function onTouchEnd( event ) {
+   mouseDown = false;
 }
 
 function onResize() {
