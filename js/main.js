@@ -3,6 +3,7 @@ var background, backgroundScene, backgroundCam;
 var cube, scene, camera;
 var renderer;
 var rotx, roty, mousex, mousey, mouseDown,axisRotating;
+var returning;
 
 function init() {
    if(Modernizr.webgl && Modernizr.canvas) {
@@ -37,7 +38,9 @@ function init() {
       rotx = roty =  mousex= mousey=0;
       mouseDown = false;
       axisRotating = "none";
+      returning = false;
 
+      window.addEventListener( 'resize', onResize, false );
       if (Modernizr.touch) {
          renderer.domElement.addEventListener( 'touchstart', onTouchStart);
          renderer.domElement.addEventListener( 'touchmove', onTouchMove);
@@ -54,13 +57,31 @@ function init() {
 function render() {
    requestAnimationFrame( render );
 
-   cube.rotation.x = rotx;
-   cube.rotation.y = roty;
+   update();
 
    renderer.autoClear = false;
    renderer.clear();
    renderer.render(backgroundScene, backgroundCam);
    renderer.render( scene, camera );
+}
+
+function update() {
+   if(!mouseDown){
+      if(Math.abs(rotx) > MAX_ROTATION/2){
+         rotx += 0.05*Math.sign(rotx);
+      }
+      else if(Math.abs(rotx)>0.05)rotx -= 0.05*Math.sign(rotx);
+      else rotx = 0;
+      if(Math.abs(cube.rotation.y) > MAX_ROTATION/2){
+         roty += 0.05*Math.sign(roty);
+      }
+      else  if(Math.abs(roty)>0.05)roty -= 0.05*Math.sign(roty);
+      else roty =0;
+   }
+   if(Math.abs(rotx) > MAX_ROTATION) cube.rotation.x = rotx = 0;
+   else cube.rotation.x = rotx;
+   if(Math.abs(roty) > MAX_ROTATION) cube.rotation.y = roty = 0;
+   else cube.rotation.y = roty;
 }
 
 ///EVENTS///
@@ -99,4 +120,10 @@ function onTouchMove (event) {
    else if (axisRotating == "y") roty += (event.touches[0].screenX-mousex)*0.01;
    mousex = event.touches[0].screenX;
    mousey = event.touches[0].screenY;
+}
+
+function onResize() {
+   camera.aspect = window.innerWidth / window.innerHeight;
+   camera.updateProjectionMatrix();
+   renderer.setSize( window.innerWidth, window.innerHeight );
 }
