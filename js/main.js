@@ -1,27 +1,36 @@
 var MAX_ROTATION = 1.5708;
-var background, backgroundScene, backgroundCam;
+var background,background2, backgroundScene, backgroundCam;
 var cube, scene, camera;
 var uvCoords;
 var renderer;
 var rotx, roty, mousex, mousey, mouseDown,axisRotating;
 var curPage;
-var textureMain, textureProva;
+var textureMain, textureProva, backgroundTexture, backgroundTexture2;
 
 function init() {
    if(Modernizr.webgl && Modernizr.canvas) {
 
       //BACKGROUND
-      var backgroundTexture = THREE.ImageUtils.loadTexture( 'img/bkg/bkg1.png' );
+      backgroundTexture = THREE.ImageUtils.loadTexture( 'img/bkg/bkg1.png' );
       background = new THREE.Mesh(
          new THREE.PlaneGeometry(2, 2, 0),
-         new THREE.MeshBasicMaterial({map: backgroundTexture})
+         new THREE.MeshBasicMaterial({map: backgroundTexture, transparent:true, opacity: 1})
       );
       background.material.depthTest = false;
       background.material.depthWrite = false;
+      backgroundTexture2 = THREE.ImageUtils.loadTexture( 'img/bkg/bkg2.jpg' );
+      background2 = new THREE.Mesh(
+         new THREE.PlaneGeometry(2, 2, 0),
+         new THREE.MeshBasicMaterial({map: backgroundTexture2, transparent:true, opacity: 1})
+      );
+      background2.material.depthTest = false;
+      background2.material.depthWrite = false;
       backgroundScene = new THREE.Scene();
       backgroundCam = new THREE.Camera();
       backgroundScene.add(backgroundCam);
       backgroundScene.add(background);
+      backgroundScene.add(background2);
+
 
       //CUBE
       scene = new THREE.Scene();
@@ -32,7 +41,7 @@ function init() {
       var geometry = new THREE.BoxGeometry( 1, 1, 1 );
       textureMain = THREE.ImageUtils.loadTexture( 'img/pages/main.png' );
       textureProva = THREE.ImageUtils.loadTexture( 'img/pages/prova.png' );
-      var material = new THREE.MeshBasicMaterial( {map: textureMain } );
+      var material = new THREE.MeshBasicMaterial( {map: textureMain} );
       curPage = "main";
 
       //UV MAPPING
@@ -93,6 +102,9 @@ function render() {
 }
 
 function update() {
+   if(axisRotating =='y')background.material.opacity = 1-(Math.abs(roty)/MAX_ROTATION);
+   else if(axisRotating =='x')background.material.opacity = 1-(Math.abs(rotx)/MAX_ROTATION);
+
    if(!mouseDown){
       if(Math.abs(rotx) > MAX_ROTATION/2){
          rotx += 0.05*Math.sign(rotx);
@@ -110,10 +122,16 @@ function update() {
       var material;
       if(curPage == 'main') {
           material = new THREE.MeshBasicMaterial( {map: textureProva } );
+          background.material.map = backgroundTexture2;
+          background.material.opacity = 1;
+          background2.material.map = backgroundTexture;
           curPage = 'prova';
        }
        else if(curPage == 'prova') {
           material = new THREE.MeshBasicMaterial( {map: textureMain } );
+          background.material.map = backgroundTexture;
+          background.material.opacity = 1;
+          background2.material.map = backgroundTexture2;
           curPage = 'main';
        }
       cube.material = material;
@@ -124,10 +142,16 @@ function update() {
       var material;
       if(curPage == 'main') {
          material = new THREE.MeshBasicMaterial( {map: textureProva } );
+         background.material.map = backgroundTexture2;
+         background.material.opacity = 1;
+         background2.material.map = backgroundTexture;
          curPage = 'prova';
       }
       else if(curPage == 'prova') {
          material = new THREE.MeshBasicMaterial( {map: textureMain } );
+         background.material.map = backgroundTexture;
+         background.material.opacity = 1;
+         background2.material.map = backgroundTexture2;
          curPage = 'main';
       }
       cube.material = material;
