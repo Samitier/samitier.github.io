@@ -16,21 +16,23 @@ function init() {
       background.material.depthTest = false;
       background.material.depthWrite = false;
       background2 = new THREE.Mesh(
-         new THREE.PlaneGeometry(2, 2, 0),
+         new THREE.PlaneGeometry(2, 2, 0), //16,9
          new THREE.MeshBasicMaterial({map: bkgMain})
       );
       background2.material.depthTest = false;
       background2.material.depthWrite = false;
       backgroundScene = new THREE.Scene();
-      backgroundCam = new THREE.Camera();
+      var width = window.innerWidth/1024; if(width>1) width = 1;
+      var height =  window.innerHeight/1024; if(height>1) height =1;
+      backgroundCam = new THREE.OrthographicCamera(-width ,width,1, -height*height, 0.1, 5 );
+      backgroundCam.position.z = 1;
       backgroundScene.add(backgroundCam);
       backgroundScene.add(background);
       backgroundScene.add(background2);
 
-
       //CUBE
       scene = new THREE.Scene();
-      camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+      camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 5);
       camera.position.z = 1.4;
       renderer = new THREE.WebGLRenderer();
       renderer.setSize( window.innerWidth, window.innerHeight );
@@ -193,6 +195,11 @@ function onTouchEnd( event ) {
 }
 
 function onResize() {
+   var width = window.innerWidth/1024;  if(width>1) width = 1;
+   var height =  window.innerHeight/1024;  if(height>1) height =1;
+   backgroundCam.left = -width; backgroundCam.right = width;
+   backgroundCam.top = 1; backgroundCam.bottom = -height*height;
+   backgroundCam.updateProjectionMatrix();
    camera.aspect = window.innerWidth / window.innerHeight;
    camera.updateProjectionMatrix();
    renderer.setSize( window.innerWidth, window.innerHeight );
