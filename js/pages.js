@@ -7,8 +7,8 @@ var uv     = { main : [new THREE.Vector2(0, .875), new THREE.Vector2(.125, .875)
 
 var bkgMain = THREE.ImageUtils.loadTexture( 'img/bkg/bkgmain.png' );
 var bkgWebsite = THREE.ImageUtils.loadTexture( 'img/bkg/bkgweb.png');
-var bkgContact = THREE.ImageUtils.loadTexture( 'img/bkg/bkgcontact.png');
-var bkgProva1 = THREE.ImageUtils.loadTexture( 'img/bkg/bkg2.png');
+var bkgContact = THREE.ImageUtils.loadTexture( 'img/bkg/bkgcontact2.png');
+var bkgProva1 = THREE.ImageUtils.loadTexture( 'img/bkg/bkg22.png');
 var bkgProva2 = THREE.ImageUtils.loadTexture( 'img/bkg/bkg3.jpg');
 
 var navs = {   main:    {top : "projects",bottom : "me",   left : "website", right: "contact", front: "main",    background:bkgMain},
