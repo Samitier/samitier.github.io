@@ -38,8 +38,7 @@ function init() {
       renderer.setSize( window.innerWidth, window.innerHeight );
       document.body.appendChild( renderer.domElement );
       var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-      var texture = THREE.ImageUtils.loadTexture( 'img/pages/pages.png' );
-      var material = new THREE.MeshBasicMaterial( {map: texture , transparent:true} );
+      var material = new THREE.MeshBasicMaterial( {map: pages , transparent:true} );
       cube = new THREE.Mesh( geometry, material );
       scene.add( cube );
 

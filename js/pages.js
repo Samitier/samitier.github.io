@@ -9,16 +9,21 @@ var uv     = { main : [new THREE.Vector2(0, .875), new THREE.Vector2(.125, .875)
 
 };
 
+var pages = THREE.ImageUtils.loadTexture( 'img/pages/pages.png' );
 var bkgMain = THREE.ImageUtils.loadTexture( 'img/bkg/bkgmain.png' );
 var bkgWebsite = THREE.ImageUtils.loadTexture( 'img/bkg/bkgweb.png');
 var bkgContact = THREE.ImageUtils.loadTexture( 'img/bkg/bkgcontact.png');
 var bkgAboutMe = THREE.ImageUtils.loadTexture( 'img/bkg/bkgAboutMe.png');
 var bkgProjects = THREE.ImageUtils.loadTexture( 'img/bkg/bkgProjects.png');
 var bkgMotivations = THREE.ImageUtils.loadTexture( 'img/bkg/bkgMotivations.png');
-var bkgSkills = THREE.ImageUtils.loadTexture( 'img/bkg/bkg222.png');
+var bkgSkills = THREE.ImageUtils.loadTexture( 'img/bkg/bkgSkills.png');
 var bkgEducation = THREE.ImageUtils.loadTexture( 'img/bkg/bkgEducation.png');
 
-
+var isLoading = true;
+THREE.DefaultLoadingManager.onProgress = function ( item, loaded, total ) {
+    if(loaded = total) isLoading=false;
+    console.log( item, loaded, total );
+};
 
 var navs = {   main:      {top : "projects",bottom : "me",   left : "website", right: "contact", front: "main",    background:bkgMain},
                website:   {top : "main",    bottom : "main", left : "main",    right: "main",     front: "website", background:bkgWebsite},
