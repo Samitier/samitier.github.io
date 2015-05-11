@@ -33,6 +33,8 @@ var bkgProjects = THREE.ImageUtils.loadTexture( 'img/bkg/bkgProjects.png');
 var bkgMotivations = THREE.ImageUtils.loadTexture( 'img/bkg/bkgMotivations.png');
 var bkgSkills = THREE.ImageUtils.loadTexture( 'img/bkg/bkgSkills.png');
 var bkgEducation = THREE.ImageUtils.loadTexture( 'img/bkg/bkgEducation.png');
+var bkgVj = THREE.ImageUtils.loadTexture( 'img/bkg/bkgVj.png');
+
 
 var isLoading = true;
 THREE.DefaultLoadingManager.onProgress = function ( item, loaded, total ) {
@@ -49,11 +51,11 @@ var navs = {   main:      {top : "projects",bottom : "me",   left : "website", r
                skills:    {top : "me",    bottom : "main", left : "main",    right:"main",      front: "skills",   background:bkgSkills},
                motivations:{top : "main",   bottom : "main", left : "me",    right:"main",      front: "motivations",  background:bkgMotivations},
 
-               vj1: {top : "vj2",   bottom : "vj5", left : "projects",    right:"main",      front: "vj1",  background:bkgMain},
-               vj2: {top : "vj3",   bottom : "vj1", left : "projects",    right:"main",      front: "vj2",  background:bkgMain},
-               vj3: {top : "vj4",   bottom : "vj2", left : "projects",    right:"main",      front: "vj3",  background:bkgMain},
-               vj4: {top : "vj5",   bottom : "vj3", left : "projects",    right:"main",      front: "vj4",  background:bkgMain},
-               vj5: {top : "vj1",   bottom : "vj4", left : "projects",    right:"main",      front: "vj5",  background:bkgMain},
+               vj1: {top : "vj2",   bottom : "vj5", left : "projects",    right:"main",      front: "vj1",  background:bkgVj},
+               vj2: {top : "vj3",   bottom : "vj1", left : "projects",    right:"main",      front: "vj2",  background:bkgVj},
+               vj3: {top : "vj4",   bottom : "vj2", left : "projects",    right:"main",      front: "vj3",  background:bkgVj},
+               vj4: {top : "vj5",   bottom : "vj3", left : "projects",    right:"main",      front: "vj4",  background:bkgVj},
+               vj5: {top : "vj1",   bottom : "vj4", left : "projects",    right:"main",      front: "vj5",  background:bkgVj},
 
                w1: {top : "main",   bottom : "projects", left : "w3",    right:"w2",      front: "w1",  background:bkgMain},
                w2: {top : "main",   bottom : "projects", left : "w1",    right:"w3",      front: "w2",  background:bkgMain},
