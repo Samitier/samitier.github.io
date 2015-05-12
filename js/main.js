@@ -154,19 +154,19 @@ function setPage(page) {
 function onMouseMove( event ) {
    if(mouseDown) {
       if(rotationAxis =="none") {
-         if(event.x != mousex && event.y == mousey) rotationAxis = "y";
-         else if(event.x == mousex && event.y != mousey) rotationAxis = "x";
+         if(event.clientX != mousex && event.clientY == mousey) rotationAxis = "y";
+         else if(event.clientX == mousex && event.clientY != mousey) rotationAxis = "x";
       }
-      else if (rotationAxis == "x") rotx += (event.y-mousey)*0.005;
-      else if (rotationAxis == "y") roty += (event.x-mousex)*0.005;
-      mousex = event.x;
-      mousey = event.y;
+      else if (rotationAxis == "x") rotx += (event.clientY-mousey)*0.005;
+      else if (rotationAxis == "y") roty += (event.clientX-mousex)*0.005;
+      mousex = event.clientX;
+      mousey = event.clientY;
    }
 }
 function onMouseDown( event ) {
    if(rotx ==0 && roty ==0) rotationAxis = "none";
-   mousex = event.x;
-   mousey = event.y;
+   mousex = event.clientX;
+   mousey = event.clientY;
    mouseDown = true;
 }
 function onMouseUp( event ) {
