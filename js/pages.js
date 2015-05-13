@@ -34,6 +34,7 @@ var bkgMotivations = THREE.ImageUtils.loadTexture( 'img/bkg/bkgMotivations.png')
 var bkgSkills = THREE.ImageUtils.loadTexture( 'img/bkg/bkgSkills.png');
 var bkgEducation = THREE.ImageUtils.loadTexture( 'img/bkg/bkgEducation.png');
 var bkgVj = THREE.ImageUtils.loadTexture( 'img/bkg/bkgVj.png');
+var bkgWb = THREE.ImageUtils.loadTexture( 'img/bkg/bkgWb.png');
 
 
 var isLoading = true;
@@ -57,9 +58,9 @@ var navs = {   main:      {top : "projects",bottom : "me",   left : "website", r
                vj4: {top : "vj5",   bottom : "vj3", left : "projects",    right:"main",      front: "vj4",  background:bkgVj},
                vj5: {top : "vj1",   bottom : "vj4", left : "projects",    right:"main",      front: "vj5",  background:bkgVj},
 
-               w1: {top : "main",   bottom : "projects", left : "w3",    right:"w2",      front: "w1",  background:bkgMain},
-               w2: {top : "main",   bottom : "projects", left : "w1",    right:"w3",      front: "w2",  background:bkgMain},
-               w3: {top : "main",   bottom : "projects", left : "w2",    right:"w1",      front: "w3",  background:bkgMain},
+               w1: {top : "main",   bottom : "projects", left : "w3",    right:"w2",      front: "w1",  background:bkgWb},
+               w2: {top : "main",   bottom : "projects", left : "w1",    right:"w3",      front: "w2",  background:bkgWb},
+               w3: {top : "main",   bottom : "projects", left : "w2",    right:"w1",      front: "w3",  background:bkgWb},
 
                a1: {top : "a2",   bottom : "a2", left : "main",    right:"projects",      front: "a1",  background:bkgMain},
                a2: {top : "a1",   bottom : "a1", left : "main",    right:"projects",      front: "a2",  background:bkgMain},
