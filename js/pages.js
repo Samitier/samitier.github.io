@@ -5,7 +5,7 @@ var uv     = { main : [new THREE.Vector2(0, .875), new THREE.Vector2(.125, .875)
                projects : [new THREE.Vector2(.5, .875), new THREE.Vector2(.625, .875), new THREE.Vector2(.625, 1),new THREE.Vector2(.5, 1)],
                education : [new THREE.Vector2(.6251, .875), new THREE.Vector2(.7499, .875), new THREE.Vector2(.7499, 1),new THREE.Vector2(.6251, 1)],
                skills : [new THREE.Vector2(.75, .875), new THREE.Vector2(.875, .875), new THREE.Vector2(.875, 1),new THREE.Vector2(.75, 1)],
-               motivations : [new THREE.Vector2(.875, .875), new THREE.Vector2(1, .875), new THREE.Vector2(1, 1),new THREE.Vector2(.875, 1)],
+               motivations : [new THREE.Vector2(.8751, .875), new THREE.Vector2(1, .875), new THREE.Vector2(1, 1),new THREE.Vector2(.8751, 1)],
 
                vj1 : [new THREE.Vector2(0, .75), new THREE.Vector2(.125, .75), new THREE.Vector2(.125, .875),new THREE.Vector2(0, .875)],
                vj2 : [new THREE.Vector2(.125, .75), new THREE.Vector2(.25, .75), new THREE.Vector2(.25, .875),new THREE.Vector2(.125, .875)],
