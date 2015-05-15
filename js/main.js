@@ -4,9 +4,13 @@ var cube, scene, camera;
 var renderer;
 var rotx, roty, mousex, mousey, mouseDown,rotationAxis;
 var curPage;
+var raycaster, normalMouse;
 
 function init() {
    if(Modernizr.webgl && Modernizr.canvas) {
+      //RAYCASTER
+      raycaster = new THREE.Raycaster();
+      normalMouse = new THREE.Vector2();
 
       //BACKGROUND
       background = new THREE.Mesh(
@@ -168,6 +172,14 @@ function onMouseDown( event ) {
    mousex = event.clientX;
    mousey = event.clientY;
    mouseDown = true;
+
+   normalMouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+	 normalMouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+   var vector = new THREE.Vector3( normalMouse.x, normalMouse.y, 0.5 ).unproject( camera );
+   var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
+   var intersects = raycaster.intersectObjects(  scene.children  );
+
+   console.dir(intersects);
 }
 function onMouseUp( event ) {
    mouseDown = false;
