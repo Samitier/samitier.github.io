@@ -5,6 +5,7 @@ var renderer;
 var rotx, roty, mousex, mousey, mouseDown,rotationAxis;
 var curPage;
 var raycaster, normalMouse;
+var buttonPressing =-1;
 
 function init() {
    if(Modernizr.webgl && Modernizr.canvas) {
@@ -165,7 +166,40 @@ function onMouseMove( event ) {
       else if (rotationAxis == "y") roty += (event.clientX-mousex)*0.005;
       mousex = event.clientX;
       mousey = event.clientY;
+
+      buttonPressing=-1;
+      document.body.style.cursor = "auto";
    }
+   else if (navs[curPage].buttons) {
+      normalMouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+   	 normalMouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+      var vector = new THREE.Vector3( normalMouse.x, normalMouse.y, 0.5 ).unproject( camera );
+      var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
+      var intersects = raycaster.intersectObjects(  scene.children  );
+      if(intersects[0]) {
+        var isOnTop = false;
+        for(var i=0; i<navs[curPage].buttons.length;++i) {
+          if(intersects[0].point.x > navs[curPage].buttons[i].x && intersects[0].point.x < navs[curPage].buttons[i].x+navs[curPage].buttons[i].width &&
+             intersects[0].point.y < navs[curPage].buttons[i].y && intersects[0].point.y > navs[curPage].buttons[i].y - navs[curPage].buttons[i].height) {
+               isOnTop = true;
+               break;
+          }
+        }
+        if(isOnTop) document.body.style.cursor = "pointer";
+        else document.body.style.cursor = "auto";
+      }
+    }
+
+   /*
+   normalMouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+   normalMouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+   var vector = new THREE.Vector3( normalMouse.x, normalMouse.y, 0.5 ).unproject( camera );
+   var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
+   var intersects = raycaster.intersectObjects(  scene.children  );
+
+   console.log(intersects[0].point.x);
+   console.log(intersects[0].point.y);
+   console.log('---');*/
 }
 function onMouseDown( event ) {
    if(rotx ==0 && roty ==0) rotationAxis = "none";
@@ -173,22 +207,52 @@ function onMouseDown( event ) {
    mousey = event.clientY;
    mouseDown = true;
 
-   normalMouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-	 normalMouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
-   var vector = new THREE.Vector3( normalMouse.x, normalMouse.y, 0.5 ).unproject( camera );
-   var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
-   var intersects = raycaster.intersectObjects(  scene.children  );
-
-   console.dir(intersects);
+   if (navs[curPage].buttons) {
+     normalMouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+  	 normalMouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+     var vector = new THREE.Vector3( normalMouse.x, normalMouse.y, 0.5 ).unproject( camera );
+     var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
+     var intersects = raycaster.intersectObjects(  scene.children  );
+     if(intersects[0]) {
+       for(var i=0; i<navs[curPage].buttons.length;++i) {
+         if(intersects[0].point.x > navs[curPage].buttons[i].x && intersects[0].point.x < navs[curPage].buttons[i].x+navs[curPage].buttons[i].width &&
+            intersects[0].point.y < navs[curPage].buttons[i].y && intersects[0].point.y > navs[curPage].buttons[i].y - navs[curPage].buttons[i].height) {
+              buttonPressing= i;
+              break;
+         }
+       }
+     }
+   }
 }
 function onMouseUp( event ) {
    mouseDown = false;
+   if(buttonPressing!=-1) {
+     window.open(navs[curPage].buttons[buttonPressing].link);
+     buttonPressing=-1;
+   }
 }
 function onTouchStart (event) {
    if(rotx ==0 && roty ==0) rotationAxis = "none";
    mousex = event.touches[0].screenX;
    mousey = event.touches[0].screenY;
    mouseDown = true;
+
+   if (navs[curPage].buttons) {
+     normalMouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+     normalMouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+     var vector = new THREE.Vector3( normalMouse.x, normalMouse.y, 0.5 ).unproject( camera );
+     var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
+     var intersects = raycaster.intersectObjects(  scene.children  );
+     if(intersects[0]) {
+       for(var i=0; i<navs[curPage].buttons.length;++i) {
+         if(intersects[0].point.x > navs[curPage].buttons[i].x && intersects[0].point.x < navs[curPage].buttons[i].x+navs[curPage].buttons[i].width &&
+            intersects[0].point.y < navs[curPage].buttons[i].y && intersects[0].point.y > navs[curPage].buttons[i].y - navs[curPage].buttons[i].height) {
+              buttonPressing= i;
+              break;
+         }
+       }
+     }
+   }
 }
 function onTouchMove (event) {
    if(rotationAxis =="none") {
@@ -199,10 +263,15 @@ function onTouchMove (event) {
    else if (rotationAxis == "y") roty += (event.touches[0].screenX-mousex)*0.01;
    mousex = event.touches[0].screenX;
    mousey = event.touches[0].screenY;
+   buttonPressing=-1;
 }
 
 function onTouchEnd( event ) {
    mouseDown = false;
+   if(buttonPressing!=-1) {
+     window.open(navs[curPage].buttons[buttonPressing].link);
+     buttonPressing=-1;
+   }
 }
 
 function onResize() {

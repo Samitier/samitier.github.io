@@ -52,14 +52,14 @@ var navs = {   main:      {top : "projects",bottom : "me",   left : "website", r
                skills:    {top : "me",    bottom : "main", left : "main",    right:"main",      front: "skills",   background:bkgSkills},
                motivations:{top : "main",   bottom : "main", left : "me",    right:"main",      front: "motivations",  background:bkgMotivations},
 
-               vj1: {top : "vj2",   bottom : "vj5", left : "projects",    right:"main",      front: "vj1",  background:bkgVj},
-               vj2: {top : "vj3",   bottom : "vj1", left : "projects",    right:"main",      front: "vj2",  background:bkgVj},
-               vj3: {top : "vj4",   bottom : "vj2", left : "projects",    right:"main",      front: "vj3",  background:bkgVj},
-               vj4: {top : "vj5",   bottom : "vj3", left : "projects",    right:"main",      front: "vj4",  background:bkgVj},
-               vj5: {top : "vj1",   bottom : "vj4", left : "projects",    right:"main",      front: "vj5",  background:bkgVj},
+               vj1: {top : "vj2",   bottom : "vj5", left : "projects",    right:"main",      front: "vj1",  background:bkgVj, buttons:[{height:0.073, width:0.34, x:0.08, y:-0.288, link:"https://www.youtube.com/watch?v=tVEEdebiVG8"}]},
+               vj2: {top : "vj3",   bottom : "vj1", left : "projects",    right:"main",      front: "vj2",  background:bkgVj, buttons:[{height:0.073, width:0.34, x:0.08, y:-0.288, link:"https://www.youtube.com/watch?v=Vp_X0DgzwpI"},{height:0.073, width:0.34, x:-0.42, y:-0.288, link:"http://www.kongregate.com/games/lepka/mongo-the-shurmanos"}]},
+               vj3: {top : "vj4",   bottom : "vj2", left : "projects",    right:"main",      front: "vj3",  background:bkgVj, buttons:[{height:0.073, width:0.34, x:0.08, y:-0.288, link:"https://www.youtube.com/watch?v=U5m4ixkeEX0"},{height:0.073, width:0.34, x:-0.42, y:-0.288, link:"http://samitier.github.io/Snow-Bros-Reborn/"}]},
+               vj4: {top : "vj5",   bottom : "vj3", left : "projects",    right:"main",      front: "vj4",  background:bkgVj, buttons:[{height:0.073, width:0.34, x:0.08, y:-0.288, link:"https://www.youtube.com/watch?v=5jJCd3k_l98"},{height:0.073, width:0.34, x:-0.42, y:-0.288, link:"https://github.com/albarralnunez/TowerDefense"}]},
+               vj5: {top : "vj1",   bottom : "vj4", left : "projects",    right:"main",      front: "vj5",  background:bkgVj, buttons:[{height:0.073, width:0.34, x:0.08, y:-0.288, link:"https://www.youtube.com/channel/UCjI7xjQrVNpVbXngJEimwSQ"}]},
 
-               w1: {top : "main",   bottom : "projects", left : "w3",    right:"w2",      front: "w1",  background:bkgWb},
-               w2: {top : "main",   bottom : "projects", left : "w1",    right:"w3",      front: "w2",  background:bkgWb},
+               w1: {top : "main",   bottom : "projects", left : "w3",    right:"w2",      front: "w1",  background:bkgWb, buttons:[{height:0.073, width:0.34, x:-0.178, y:-0.342, link:"http://dhis2-hii.asfes.org/"}]},
+               w2: {top : "main",   bottom : "projects", left : "w1",    right:"w3",      front: "w2",  background:bkgWb, buttons:[{height:0.073, width:0.34, x:0.08, y:-0.288, link:"https://github.com/ferranmarlet/ticketForAll"},{height:0.073, width:0.34, x:-0.42, y:-0.288, link:"http://ticketforall.herokuapp.com/"}]},
                w3: {top : "main",   bottom : "projects", left : "w2",    right:"w1",      front: "w3",  background:bkgWb},
 
                a1: {top : "a2",   bottom : "a2", left : "main",    right:"projects",      front: "a1",  background:bkgMain},
