@@ -24,17 +24,17 @@ var uv     = { main : [new THREE.Vector2(0, .875), new THREE.Vector2(.125, .875)
 
 };
 
-var pages = THREE.ImageUtils.loadTexture( 'img/pages/pages.png' );
-var bkgMain = THREE.ImageUtils.loadTexture( 'img/bkg/bkgmain.png' );
-var bkgWebsite = THREE.ImageUtils.loadTexture( 'img/bkg/bkgweb.png');
-var bkgContact = THREE.ImageUtils.loadTexture( 'img/bkg/bkgcontact.png');
-var bkgAboutMe = THREE.ImageUtils.loadTexture( 'img/bkg/bkgAboutMe.png');
-var bkgProjects = THREE.ImageUtils.loadTexture( 'img/bkg/bkgProjects.png');
-var bkgMotivations = THREE.ImageUtils.loadTexture( 'img/bkg/bkgMotivations.png');
-var bkgSkills = THREE.ImageUtils.loadTexture( 'img/bkg/bkgSkills.png');
-var bkgEducation = THREE.ImageUtils.loadTexture( 'img/bkg/bkgEducation.png');
+var pages = THREE.ImageUtils.loadTexture( 'img/pages/pages.jpg' );
+var bkgMain = THREE.ImageUtils.loadTexture( 'img/bkg/bkgmain.jpg' );
+var bkgWebsite = THREE.ImageUtils.loadTexture( 'img/bkg/bkgweb.jpg');
+var bkgContact = THREE.ImageUtils.loadTexture( 'img/bkg/bkgcontact.jpg');
+var bkgAboutMe = THREE.ImageUtils.loadTexture( 'img/bkg/bkgAboutMe.jpg');
+var bkgProjects = THREE.ImageUtils.loadTexture( 'img/bkg/bkgProjects.jpg');
+var bkgMotivations = THREE.ImageUtils.loadTexture( 'img/bkg/bkgMotivations.jpg');
+var bkgSkills = THREE.ImageUtils.loadTexture( 'img/bkg/bkgSkills.jpg');
+var bkgEducation = THREE.ImageUtils.loadTexture( 'img/bkg/bkgEducation.jpg');
 var bkgVj = THREE.ImageUtils.loadTexture( 'img/bkg/bkgVj.png');
-var bkgWb = THREE.ImageUtils.loadTexture( 'img/bkg/bkgWb.png');
+var bkgWb = THREE.ImageUtils.loadTexture( 'img/bkg/bkgWb.jpg');
 
 
 var isLoading = true;
