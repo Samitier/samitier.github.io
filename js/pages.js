@@ -37,10 +37,11 @@ var bkgVj = THREE.ImageUtils.loadTexture( 'img/bkg/bkgVj.png');
 var bkgWb = THREE.ImageUtils.loadTexture( 'img/bkg/bkgWb.jpg');
 
 
-var isLoading = true;
 THREE.DefaultLoadingManager.onProgress = function ( item, loaded, total ) {
-    if(loaded = total) isLoading=false;
-    console.log( item, loaded, total );
+    //if(loaded = total) isLoading=false;
+    document.getElementById("loadingText").innerHTML = "Loading: " + loaded/total*100 + "%";
+    if(loaded==total) document.getElementById("loadingDiv").style.display = 'none';
+    //console.log( item, loaded, total );
 };
 
 var navs = {   main:      {top : "projects",bottom : "me",   left : "website", right: "contact", front: "main",    background:bkgMain},

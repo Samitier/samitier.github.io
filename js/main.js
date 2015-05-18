@@ -73,7 +73,6 @@ function init() {
 
 function render() {
    requestAnimationFrame( render );
-
    update();
 
    renderer.autoClear = false;
@@ -236,10 +235,9 @@ function onTouchStart (event) {
    mousex = event.touches[0].screenX;
    mousey = event.touches[0].screenY;
    mouseDown = true;
-
    if (navs[curPage].buttons) {
-     normalMouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-     normalMouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+     normalMouse.x = ( event.touches[0].clientX / window.innerWidth ) * 2 - 1;
+     normalMouse.y = - (event.touches[0].clientY / window.innerHeight ) * 2 + 1;
      var vector = new THREE.Vector3( normalMouse.x, normalMouse.y, 0.5 ).unproject( camera );
      var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
      var intersects = raycaster.intersectObjects(  scene.children  );
@@ -247,7 +245,7 @@ function onTouchStart (event) {
        for(var i=0; i<navs[curPage].buttons.length;++i) {
          if(intersects[0].point.x > navs[curPage].buttons[i].x && intersects[0].point.x < navs[curPage].buttons[i].x+navs[curPage].buttons[i].width &&
             intersects[0].point.y < navs[curPage].buttons[i].y && intersects[0].point.y > navs[curPage].buttons[i].y - navs[curPage].buttons[i].height) {
-              buttonPressing= i;
+              window.open(navs[curPage].buttons[i].link);
               break;
          }
        }
@@ -263,15 +261,10 @@ function onTouchMove (event) {
    else if (rotationAxis == "y") roty += (event.touches[0].screenX-mousex)*0.01;
    mousex = event.touches[0].screenX;
    mousey = event.touches[0].screenY;
-   buttonPressing=-1;
 }
 
 function onTouchEnd( event ) {
    mouseDown = false;
-   if(buttonPressing!=-1) {
-     window.open(navs[curPage].buttons[buttonPressing].link);
-     buttonPressing=-1;
-   }
 }
 
 function onResize() {
