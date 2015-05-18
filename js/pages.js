@@ -24,7 +24,7 @@ var uv     = { main : [new THREE.Vector2(0, .875), new THREE.Vector2(.125, .875)
 
 };
 
-var pages = THREE.ImageUtils.loadTexture( 'img/pages/pages.jpg' );
+var pages = THREE.ImageUtils.loadTexture( 'img/pages/pages.png' );
 var bkgMain = THREE.ImageUtils.loadTexture( 'img/bkg/bkgmain.jpg' );
 var bkgWebsite = THREE.ImageUtils.loadTexture( 'img/bkg/bkgweb.jpg');
 var bkgContact = THREE.ImageUtils.loadTexture( 'img/bkg/bkgcontact.jpg');
