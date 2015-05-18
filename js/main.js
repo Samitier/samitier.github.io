@@ -66,7 +66,7 @@ function init() {
          renderer.domElement.addEventListener( 'mousedown', onMouseDown );
          renderer.domElement.addEventListener( 'mouseup', onMouseUp );
       }
-      //render();
+      render();
    }
    else alert("Your browser don't support WebGl! :(");
 }
