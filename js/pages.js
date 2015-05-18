@@ -39,7 +39,7 @@ var bkgWb = THREE.ImageUtils.loadTexture( 'img/bkg/bkgWb.jpg');
 
 THREE.DefaultLoadingManager.onProgress = function ( item, loaded, total ) {
     //if(loaded = total) isLoading=false;
-    document.getElementById("loadingText").innerHTML = "Loading: " + loaded/total*100 + "%";
+    document.getElementById("loadingText").innerHTML = "Loading: " + Math.round(loaded/total*100) + "%";
     if(loaded==total) document.getElementById("loadingDiv").style.display = 'none';
     //console.log( item, loaded, total );
 };

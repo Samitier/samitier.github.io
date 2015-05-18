@@ -232,8 +232,8 @@ function onMouseUp( event ) {
 }
 function onTouchStart (event) {
    if(rotx ==0 && roty ==0) rotationAxis = "none";
-   mousex = event.touches[0].screenX;
-   mousey = event.touches[0].screenY;
+   mousex = event.touches[0].clientX;
+   mousey = event.touches[0].clientY;
    mouseDown = true;
    if (navs[curPage].buttons) {
      normalMouse.x = ( event.touches[0].clientX / window.innerWidth ) * 2 - 1;
@@ -254,13 +254,13 @@ function onTouchStart (event) {
 }
 function onTouchMove (event) {
    if(rotationAxis =="none") {
-      if(event.touches[0].screenX != mousex && event.touches[0].screenY == mousey) rotationAxis = "y";
-      else if(event.touches[0].screenX == mousex && event.touches[0].screenY != mousey) rotationAxis = "x";
+      if(event.touches[0].clientX != mousex && event.touches[0].clientY == mousey) rotationAxis = "y";
+      else if(event.touches[0].clientX == mousex && event.touches[0].clientY != mousey) rotationAxis = "x";
    }
-   else if (rotationAxis == "x") rotx += (event.touches[0].screenY-mousey)*0.01;
-   else if (rotationAxis == "y") roty += (event.touches[0].screenX-mousex)*0.01;
-   mousex = event.touches[0].screenX;
-   mousey = event.touches[0].screenY;
+   else if (rotationAxis == "x") rotx += (event.touches[0].clientY-mousey)*0.01;
+   else if (rotationAxis == "y") roty += (event.touches[0].clientX-mousex)*0.01;
+   mousex = event.touches[0].clientX;
+   mousey = event.touches[0].clientY;
 }
 
 function onTouchEnd( event ) {
