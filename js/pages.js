@@ -36,10 +36,11 @@ var bkgEducation = THREE.ImageUtils.loadTexture( 'img/bkg/bkgEducation.jpg');
 var bkgVj = THREE.ImageUtils.loadTexture( 'img/bkg/bkgVj.png');
 var bkgWb = THREE.ImageUtils.loadTexture( 'img/bkg/bkgWb.jpg');
 
-
+var loaded = 0;
 THREE.DefaultLoadingManager.onProgress = function ( item, loaded, total ) {
     //if(loaded = total) isLoading=false;
-    document.getElementById("loadingText").innerHTML = "Loading: " + Math.round(loaded/total*100) + "%";
+    loaded =  Math.round(loaded/total*100);
+    document.getElementById("loadingText").innerHTML = "Loading: " + loaded + "%";
     if(loaded==total) document.getElementById("loadingDiv").style.display = 'none';
     //console.log( item, loaded, total );
 };
