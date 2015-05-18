@@ -24,23 +24,27 @@ var uv     = { main : [new THREE.Vector2(0, .75), new THREE.Vector2(.125, .75), 
 
 };
 
-var pages = THREE.ImageUtils.loadTexture( 'img/pages/pages.png' );
-var bkgMain = THREE.ImageUtils.loadTexture( 'img/bkg/bkgmain.jpg' );
-var bkgWebsite = THREE.ImageUtils.loadTexture( 'img/bkg/bkgweb.jpg');
-var bkgContact = THREE.ImageUtils.loadTexture( 'img/bkg/bkgcontact.jpg');
-var bkgAboutMe = THREE.ImageUtils.loadTexture( 'img/bkg/bkgAboutMe.jpg');
-var bkgProjects = THREE.ImageUtils.loadTexture( 'img/bkg/bkgProjects.jpg');
-var bkgMotivations = THREE.ImageUtils.loadTexture( 'img/bkg/bkgMotivations.jpg');
-var bkgSkills = THREE.ImageUtils.loadTexture( 'img/bkg/bkgSkills.jpg');
-var bkgEducation = THREE.ImageUtils.loadTexture( 'img/bkg/bkgEducation.jpg');
-var bkgVj = THREE.ImageUtils.loadTexture( 'img/bkg/bkgVj.png');
-var bkgWb = THREE.ImageUtils.loadTexture( 'img/bkg/bkgWb.jpg');
-var bkgAndroid = THREE.ImageUtils.loadTexture( 'img/bkg/bkgAndroid.jpg');
+if(Modernizr.webgl && Modernizr.canvas) {
+  var pages = THREE.ImageUtils.loadTexture( 'img/pages/pages.png' );
+  var bkgMain = THREE.ImageUtils.loadTexture( 'img/bkg/bkgmain.jpg' );
+  var bkgWebsite = THREE.ImageUtils.loadTexture( 'img/bkg/bkgweb.jpg');
+  var bkgContact = THREE.ImageUtils.loadTexture( 'img/bkg/bkgcontact.jpg');
+  var bkgAboutMe = THREE.ImageUtils.loadTexture( 'img/bkg/bkgAboutMe.jpg');
+  var bkgProjects = THREE.ImageUtils.loadTexture( 'img/bkg/bkgProjects.jpg');
+  var bkgMotivations = THREE.ImageUtils.loadTexture( 'img/bkg/bkgMotivations.jpg');
+  var bkgSkills = THREE.ImageUtils.loadTexture( 'img/bkg/bkgSkills.jpg');
+  var bkgEducation = THREE.ImageUtils.loadTexture( 'img/bkg/bkgEducation.jpg');
+  var bkgVj = THREE.ImageUtils.loadTexture( 'img/bkg/bkgVj.png');
+  var bkgWb = THREE.ImageUtils.loadTexture( 'img/bkg/bkgWb.jpg');
+  var bkgAndroid = THREE.ImageUtils.loadTexture( 'img/bkg/bkgAndroid.jpg');
+}
 
 THREE.DefaultLoadingManager.onProgress = function ( item, loaded, total ) {
     document.getElementById("loadingText").innerHTML = "Loading: " + Math.round(loaded/total*100) + "%";
-    if(loaded==total) document.getElementById("loadingDiv").style.display = 'none';
-    //console.log( item, loaded, total );
+    if(loaded==total) {
+      document.getElementById("loadingDiv").style.display = 'none';
+      render();
+    }
 };
 
 var navs = {   main:      {top : "projects",bottom : "me",   left : "website", right: "contact", front: "main",    background:bkgMain},
