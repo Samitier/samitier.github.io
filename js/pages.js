@@ -17,7 +17,7 @@ var uv     = { main : [new THREE.Vector2(0, .75), new THREE.Vector2(.125, .75), 
                w2 : [new THREE.Vector2(.125, .25), new THREE.Vector2(.25, .25), new THREE.Vector2(.25, .5),new THREE.Vector2(.125, .5)],
                w3 : [new THREE.Vector2(.250, .25), new THREE.Vector2(.375, .25), new THREE.Vector2(.375, .5),new THREE.Vector2(.250, .5)],
 
-               a1 : [new THREE.Vector2(0, .0), new THREE.Vector2(.125, .0), new THREE.Vector2(.125, .25),new THREE.Vector2(0, .25)],
+               a1 : [new THREE.Vector2(0, .0), new THREE.Vector2(.1249, .0), new THREE.Vector2(.1249, .25),new THREE.Vector2(0, .25)],
                a2 : [new THREE.Vector2(.125, .0), new THREE.Vector2(.25, .0), new THREE.Vector2(.25, .25),new THREE.Vector2(.125, .25)]
 
 
@@ -35,7 +35,7 @@ var bkgSkills = THREE.ImageUtils.loadTexture( 'img/bkg/bkgSkills.jpg');
 var bkgEducation = THREE.ImageUtils.loadTexture( 'img/bkg/bkgEducation.jpg');
 var bkgVj = THREE.ImageUtils.loadTexture( 'img/bkg/bkgVj.png');
 var bkgWb = THREE.ImageUtils.loadTexture( 'img/bkg/bkgWb.jpg');
-
+var bkgAndroid = THREE.ImageUtils.loadTexture( 'img/bkg/bkgAndroid.jpg');
 
 THREE.DefaultLoadingManager.onProgress = function ( item, loaded, total ) {
     document.getElementById("loadingText").innerHTML = "Loading: " + Math.round(loaded/total*100) + "%";
@@ -62,6 +62,6 @@ var navs = {   main:      {top : "projects",bottom : "me",   left : "website", r
                w2: {top : "main",   bottom : "projects", left : "w1",    right:"w3",      front: "w2",  background:bkgWb, buttons:[{height:0.073, width:0.34, x:0.08, y:-0.288, link:"https://github.com/ferranmarlet/ticketForAll"},{height:0.073, width:0.34, x:-0.42, y:-0.288, link:"http://ticketforall.herokuapp.com/"}]},
                w3: {top : "main",   bottom : "projects", left : "w2",    right:"w1",      front: "w3",  background:bkgWb},
 
-               a1: {top : "a2",   bottom : "a2", left : "main",    right:"projects",      front: "a1",  background:bkgMain},
-               a2: {top : "a1",   bottom : "a1", left : "main",    right:"projects",      front: "a2",  background:bkgMain},
+               a1: {top : "a2",   bottom : "a2", left : "main",    right:"projects",      front: "a1",  background:bkgMain, buttons:[{height:0.073, width:0.34, x:-0.178, y:-0.342, link:"https://github.com/Samitier/Share-the-Sound"}]},
+               a2: {top : "a1",   bottom : "a1", left : "main",    right:"projects",      front: "a2",  background:bkgAndroid},
 }
