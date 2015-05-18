@@ -1,24 +1,24 @@
-var uv     = { main : [new THREE.Vector2(0, .875), new THREE.Vector2(.125, .875), new THREE.Vector2(.125, 1),new THREE.Vector2(0, 1)],
-               website : [new THREE.Vector2(.125, .875), new THREE.Vector2(.25, .875), new THREE.Vector2(.25, 1),new THREE.Vector2(.125, 1)],
-               contact : [new THREE.Vector2(.250, .875), new THREE.Vector2(.375, .875), new THREE.Vector2(.375, 1),new THREE.Vector2(.250, 1)],
-               me : [new THREE.Vector2(.375, .875), new THREE.Vector2(.500, .875), new THREE.Vector2(.500, 1),new THREE.Vector2(.375, 1)],
-               projects : [new THREE.Vector2(.5, .875), new THREE.Vector2(.625, .875), new THREE.Vector2(.625, 1),new THREE.Vector2(.5, 1)],
-               education : [new THREE.Vector2(.6251, .875), new THREE.Vector2(.7499, .875), new THREE.Vector2(.7499, 1),new THREE.Vector2(.6251, 1)],
-               skills : [new THREE.Vector2(.75, .875), new THREE.Vector2(.875, .875), new THREE.Vector2(.875, 1),new THREE.Vector2(.75, 1)],
-               motivations : [new THREE.Vector2(.8751, .875), new THREE.Vector2(1, .875), new THREE.Vector2(1, 1),new THREE.Vector2(.8751, 1)],
+var uv     = { main : [new THREE.Vector2(0, .75), new THREE.Vector2(.125, .75), new THREE.Vector2(.125, 1),new THREE.Vector2(0, 1)],
+               website : [new THREE.Vector2(.125, .75), new THREE.Vector2(.2499, .75), new THREE.Vector2(.2499, 1),new THREE.Vector2(.125, 1)],
+               contact : [new THREE.Vector2(.250, .75), new THREE.Vector2(.375, .75), new THREE.Vector2(.375, 1),new THREE.Vector2(.250, 1)],
+               me : [new THREE.Vector2(.3751, .75), new THREE.Vector2(.500, .75), new THREE.Vector2(.500, 1),new THREE.Vector2(.3751, 1)],
+               projects : [new THREE.Vector2(.5, .75), new THREE.Vector2(.625, .75), new THREE.Vector2(.625, 1),new THREE.Vector2(.5, 1)],
+               education : [new THREE.Vector2(.6251, .75), new THREE.Vector2(.7499, .75), new THREE.Vector2(.7499, 1),new THREE.Vector2(.6251, 1)],
+               skills : [new THREE.Vector2(.75, .75), new THREE.Vector2(.875, .75), new THREE.Vector2(.875, 1),new THREE.Vector2(.75, 1)],
+               motivations : [new THREE.Vector2(.8751, .75), new THREE.Vector2(1, .75), new THREE.Vector2(1, 1),new THREE.Vector2(.8751, 1)],
 
-               vj1 : [new THREE.Vector2(0, .75), new THREE.Vector2(.125, .75), new THREE.Vector2(.125, .875),new THREE.Vector2(0, .875)],
-               vj2 : [new THREE.Vector2(.125, .75), new THREE.Vector2(.25, .75), new THREE.Vector2(.25, .875),new THREE.Vector2(.125, .875)],
-               vj3 : [new THREE.Vector2(.250, .75), new THREE.Vector2(.375, .75), new THREE.Vector2(.375, .875),new THREE.Vector2(.250, .875)],
-               vj4 : [new THREE.Vector2(.375, .75), new THREE.Vector2(.500, .75), new THREE.Vector2(.500, .875),new THREE.Vector2(.375, .875)],
-               vj5 : [new THREE.Vector2(.5, .75), new THREE.Vector2(.625, .75), new THREE.Vector2(.625, .875),new THREE.Vector2(.5, .875)],
+               vj1 : [new THREE.Vector2(0, .5), new THREE.Vector2(.125, .5), new THREE.Vector2(.125, .75),new THREE.Vector2(0, .75)],
+               vj2 : [new THREE.Vector2(.125, .5), new THREE.Vector2(.25, .5), new THREE.Vector2(.25, .75),new THREE.Vector2(.125, .75)],
+               vj3 : [new THREE.Vector2(.250, .5), new THREE.Vector2(.375, .5), new THREE.Vector2(.375, .75),new THREE.Vector2(.250, .75)],
+               vj4 : [new THREE.Vector2(.375, .5), new THREE.Vector2(.500, .5), new THREE.Vector2(.500, .75),new THREE.Vector2(.375, .75)],
+               vj5 : [new THREE.Vector2(.5, .5), new THREE.Vector2(.625, .5), new THREE.Vector2(.625, .75),new THREE.Vector2(.5, .75)],
 
-               w1 : [new THREE.Vector2(0, .625), new THREE.Vector2(.125, .625), new THREE.Vector2(.125, .75),new THREE.Vector2(0, .75)],
-               w2 : [new THREE.Vector2(.125, .625), new THREE.Vector2(.25, .625), new THREE.Vector2(.25, .75),new THREE.Vector2(.125, .75)],
-               w3 : [new THREE.Vector2(.250, .625), new THREE.Vector2(.375, .625), new THREE.Vector2(.375, .75),new THREE.Vector2(.250, .75)],
+               w1 : [new THREE.Vector2(0, .25), new THREE.Vector2(.125, .25), new THREE.Vector2(.125, .5),new THREE.Vector2(0, .5)],
+               w2 : [new THREE.Vector2(.125, .25), new THREE.Vector2(.25, .25), new THREE.Vector2(.25, .5),new THREE.Vector2(.125, .5)],
+               w3 : [new THREE.Vector2(.250, .25), new THREE.Vector2(.375, .25), new THREE.Vector2(.375, .5),new THREE.Vector2(.250, .5)],
 
-               a1 : [new THREE.Vector2(0, .500), new THREE.Vector2(.125, .500), new THREE.Vector2(.125, .625),new THREE.Vector2(0, .625)],
-               a2 : [new THREE.Vector2(.125, .500), new THREE.Vector2(.25, .500), new THREE.Vector2(.25, .625),new THREE.Vector2(.125, .625)]
+               a1 : [new THREE.Vector2(0, .0), new THREE.Vector2(.125, .0), new THREE.Vector2(.125, .25),new THREE.Vector2(0, .25)],
+               a2 : [new THREE.Vector2(.125, .0), new THREE.Vector2(.25, .0), new THREE.Vector2(.25, .25),new THREE.Vector2(.125, .25)]
 
 
 
@@ -38,7 +38,6 @@ var bkgWb = THREE.ImageUtils.loadTexture( 'img/bkg/bkgWb.jpg');
 
 
 THREE.DefaultLoadingManager.onProgress = function ( item, loaded, total ) {
-    //if(loaded = total) isLoading=false;
     document.getElementById("loadingText").innerHTML = "Loading: " + Math.round(loaded/total*100) + "%";
     if(loaded==total) document.getElementById("loadingDiv").style.display = 'none';
     //console.log( item, loaded, total );
