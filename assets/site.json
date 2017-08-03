@@ -1,0 +1,48 @@
+{
+	"backgrounds": [
+		"/bkg/bkgmain.jpg",
+		"/bkg/bkgweb.jpg",
+		"/bkg/bkgcontact.jpg",
+		"/bkg/bkgAboutMe.jpg",
+		"/bkg/bkgProjects.jpg",
+		"/bkg/bkgMotivations.jpg",
+		"/bkg/bkgSkills.jpg",
+		"/bkg/bkgEducation.jpg",
+		"/bkg/bkgVj.jpg",
+		"/bkg/bkgWb.jpg",
+		"/bkg/bkgAndroid.jpg"
+	],
+
+	"texture": "/pages/pages.png",
+	"square-size": 500,
+	
+	"pages": {
+		"main": { 
+			"position": 0, 
+			"background": 0, 
+			"navigation": ["projects", "website", "me", "contact"] 
+		},
+		"website": {
+			"position": 1, 
+			"background": 1, 
+			"navigation": ["", "", "", ""] 
+		},
+		"contact": {
+			"position": 2, 
+			"background": 2, 
+			"navigation": ["", "", "", ""] 
+		},
+
+		"me": {
+			"position": 3, 
+			"background": 3, 
+			"navigation": ["", "website", "me", "contact"] 
+		},
+
+		"projects": {
+			"position": 4, 
+			"background": 4, 
+			"navigation": ["projects", "website", "me", "contact"] 
+		}
+	}
+}
