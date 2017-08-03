@@ -84,22 +84,19 @@ class Main {
 		}
 		// If the user completely rotates the cube, the navigation will happen:
 		// And the face textures will change 
-		if (Math.abs(rotation.x) > MAX_ROTATION) {
-			let dir = rotation.x > 0 ? "top" : "bottom"
+		if (Math.abs(rotation.x) > MAX_ROTATION || Math.abs(rotation.y) > MAX_ROTATION) {
+			let dir = ""
+			if (Math.abs(rotation.x) > MAX_ROTATION) {
+				dir = rotation.x > 0 ? "top" : "bottom"
+			}
+			else if(Math.abs(rotation.y) > MAX_ROTATION) {
+				dir = rotation.y > 0 ? "left" : "right"
+			}
 			this.setPage(navs[navs[this.curPage][dir]])
-			rotation.x = 0
-			this.cubeScene.setCubeRotation("x", rotation.x)
+			rotation.x = rotation.y = 0
 		}
-		else if (Math.abs(rotation.y) > MAX_ROTATION) {
-			let dir = rotation.y > 0 ? "left" : "right"
-			this.setPage(navs[navs[this.curPage][dir]])
-			rotation.y = 0
-			this.cubeScene.setCubeRotation("y", rotation.y)
-		}
-		else {
-			this.cubeScene.setCubeRotation("x", rotation.x)
-			this.cubeScene.setCubeRotation("y", rotation.y)
-		}
+		this.cubeScene.setCubeRotation("x", rotation.x)
+		this.cubeScene.setCubeRotation("y", rotation.y)
 		this.eventManager.setRotation(rotation)
 	}
 

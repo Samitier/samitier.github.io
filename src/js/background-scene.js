@@ -22,12 +22,12 @@ export default class BackgroundScene {
 		for (let background of this.backgrounds) this.scene.add(background)
 	}
 
-	_newBackgroundMesh(map, isTransparent = false) {
+	_newBackgroundMesh(map, transparent = false) {
 		return new Mesh(
 			new PlaneGeometry(2, 2, 0),
 			new MeshBasicMaterial({ 
 				map, 
-				transparent: isTransparent, 
+				transparent, 
 				opacity: 1, 
 				depthTest: false,
 				depthWrite: false
