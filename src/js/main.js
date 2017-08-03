@@ -44,14 +44,14 @@ class Main {
 			isMouseDown = this.eventManager.getIsMouseDown(),
 			rotation = this.eventManager.getRotation()
 
-		// Alpha-transition of the background depending on the rotation percentage
+		// Alpha-transition of the background depending on the rotation percentage.
 		if (rotationAxis == "y" || rotationAxis == "x") {
 			this.backgroundScene.setBackgroundOpacity( 
 				1 - (Math.abs(rotation[rotationAxis]) / MAX_ROTATION)
 			)
 		}
 		// If the cube is half rotated and the user stops interacting, 
-		// it will move itself to a final position
+		// it will move itself to a final position.
 		if (!isMouseDown) {
 			if (Math.abs(rotation.x) > MAX_ROTATION / 2) {
 				rotation.x += 0.05 * Math.sign(rotation.x)
@@ -68,7 +68,7 @@ class Main {
 			}
 			else rotation.y = 0
 		}
-		// If user is moving the cube we set the new background that will do the transition
+		// If the user is moving the cube we set the new transitioning background
 		else {
 			let cubeRotation = this.cubeScene.getCubeRotation(),
 				rotationFace = ""
@@ -83,7 +83,7 @@ class Main {
 			}
 		}
 		// If the user completely rotates the cube, the navigation will happen:
-		// And the face textures will change 
+		// and the face textures will change 
 		if (Math.abs(rotation.x) > MAX_ROTATION || Math.abs(rotation.y) > MAX_ROTATION) {
 			let dir = ""
 			if (Math.abs(rotation.x) > MAX_ROTATION) {
