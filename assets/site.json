@@ -36,13 +36,53 @@
 		"me": {
 			"position": 3, 
 			"background": 3, 
-			"navigation": ["", "website", "me", "contact"] 
+			"navigation": ["", "motivations", "skills", "education"] 
+		},
+		"education": {
+			"position": 5,    
+			"background": 7,
+			"navigation": ["", "me", "", ""]
+		},
+		"skills": {
+			"position": 6,
+			"background": 8,
+			"navigation": ["me", "", "", ""]
+		},
+        "motivations": {
+			"position": 7,
+			"background": 9,
+			"navigation": ["", "", "", "me"]
 		},
 
 		"projects": {
 			"position": 4, 
 			"background": 4, 
-			"navigation": ["projects", "website", "me", "contact"] 
+			"navigation": ["", "games1", "", ""] 
+		},
+		"games0": {
+			"position": 9,
+			"background": 8,
+			"navigation": ["games4", "", "games1", "projects"]
+		},
+		"games1": {
+			"position": 10,
+			"background": 8,
+			"navigation": ["games0", "", "games2", "projects"]
+		},
+		"games2": {
+			"position": 11,
+			"background": 8,
+			"navigation": ["games1", "", "games3", "projects"]
+		},
+		"games3": {
+			"position": 12,
+			"background": 8,
+			"navigation": ["games2", "", "games4", "projects"]
+		},
+		"games4": {
+			"position": 13,
+			"background": 8,
+			"navigation": ["games3", "", "games0", "projects"]
 		}
 	}
 }

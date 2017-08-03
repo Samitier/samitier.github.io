@@ -6,13 +6,13 @@ import {
 
 import BackgroundScene from "./background-scene"
 import CubeScene from "./cube-scene"
+import MouseEvents from "./mouse-events"
 
 const MAX_ROTATION = 1.5708
 
 class Main {
 
 	constructor () {
-		
 		// Scenes
 		this.backgroundScene = new BackgroundScene(bkgMain)
 		this.cubeScene = new CubeScene(pages)
@@ -22,19 +22,11 @@ class Main {
 		this.renderer = new WebGLRenderer()
 		this.renderer.setSize(window.innerWidth, window.innerHeight)
 		document.body.appendChild(this.renderer.domElement)
-		
-		// Movement control
-		this.rotation = { x: 0, y: 0 }
-		this.mouse = { x: 0, y: 0 }
-		this.isMouseDown = false
-		this.rotationAxis = "none"
 
-		// Events
+		// Event registration
+		this.eventManager = new MouseEvents(this.renderer)
 		window.addEventListener('resize', this.onResize.bind(this), false)
-		this.renderer.domElement.addEventListener('mousemove', this.onMouseMove.bind(this))
-		this.renderer.domElement.addEventListener('mousedown', this.onMouseDown.bind(this))
-		this.renderer.domElement.addEventListener('mouseup', this.onMouseUp.bind(this))
-
+		
 		this.render()
 	}
 
@@ -47,61 +39,68 @@ class Main {
 		this.renderer.render(this.cubeScene.getScene(), this.cubeScene.getCamera())
 	}
 
-	 update() {
-		//transition of the background
-		if (this.rotationAxis == "y" || this.rotationAxis == "x") {
+	update() {
+		let rotationAxis = this.eventManager.getRotationAxis(),
+			isMouseDown = this.eventManager.getIsMouseDown(),
+			rotation = this.eventManager.getRotation()
+
+		// Alpha-transition of the background depending on the rotation percentage
+		if (rotationAxis == "y" || rotationAxis == "x") {
 			this.backgroundScene.setBackgroundOpacity( 
-				1 - (Math.abs(this.rotation[this.rotationAxis]) / MAX_ROTATION)
+				1 - (Math.abs(rotation[rotationAxis]) / MAX_ROTATION)
 			)
 		}
-		//if the cube is between two rotations it will move itself until a final position
-		if (!this.isMouseDown) {
-			if (Math.abs(this.rotation.x) > MAX_ROTATION / 2) {
-				this.rotation.x += 0.05 * Math.sign(this.rotation.x)
+		// If the cube is half rotated and the user stops interacting, 
+		// it will move itself to a final position
+		if (!isMouseDown) {
+			if (Math.abs(rotation.x) > MAX_ROTATION / 2) {
+				rotation.x += 0.05 * Math.sign(rotation.x)
 			}
-			else if (Math.abs(this.rotation.x) > 0.05) {
-				this.rotation.x -= 0.05 * Math.sign(this.rotation.x)
+			else if (Math.abs(rotation.x) > 0.05) {
+				rotation.x -= 0.05 * Math.sign(rotation.x)
 			}
-			else this.rotation.x = 0
-			if (Math.abs(this.rotation.y) > MAX_ROTATION / 2) {
-				this.rotation.y += 0.05 * Math.sign(this.rotation.y)
+			else rotation.x = 0
+			if (Math.abs(rotation.y) > MAX_ROTATION / 2) {
+				rotation.y += 0.05 * Math.sign(rotation.y)
 			}
-			else if (Math.abs(this.rotation.y) > 0.05) {
-				this.rotation.y -= 0.05 * Math.sign(this.rotation.y)
+			else if (Math.abs(rotation.y) > 0.05) {
+				rotation.y -= 0.05 * Math.sign(rotation.y)
 			}
-			else this.rotation.y = 0
+			else rotation.y = 0
 		}
-		//if user is moving the cube we set the new background that will do the transition
+		// If user is moving the cube we set the new background that will do the transition
 		else {
 			let cubeRotation = this.cubeScene.getCubeRotation(),
 				rotationFace = ""
-			if (this.rotation.x > 0 && cubeRotation.x <= 0) rotationFace = "top"
-			else if (this.rotation.x < 0 && cubeRotation.x >= 0) rotationFace = "bottom"
-			if (this.rotation.y > 0 && cubeRotation.y <= 0) rotationFace = "left"
-			else if (this.rotation.y < 0 && cubeRotation.y >= 0) rotationFace = "right"
+			if (rotation.x > 0 && cubeRotation.x <= 0) rotationFace = "top"
+			else if (rotation.x < 0 && cubeRotation.x >= 0) rotationFace = "bottom"
+			if (rotation.y > 0 && cubeRotation.y <= 0) rotationFace = "left"
+			else if (rotation.y < 0 && cubeRotation.y >= 0) rotationFace = "right"
 			if (rotationFace) {
 				this.backgroundScene.setBackgroundMap(
 					1, navs[navs[this.curPage][rotationFace]].background
 				)
 			}
 		}
-		//if the user completely rotates the cube, the navigation will happen
-		if (Math.abs(this.rotation.x) > MAX_ROTATION) {
-			let dir = this.rotation.x > 0 ? "top" : "bottom"
+		// If the user completely rotates the cube, the navigation will happen:
+		// And the face textures will change 
+		if (Math.abs(rotation.x) > MAX_ROTATION) {
+			let dir = rotation.x > 0 ? "top" : "bottom"
 			this.setPage(navs[navs[this.curPage][dir]])
-			this.rotation.x = 0
-			this.cubeScene.setCubeRotation("x", this.rotation.x)
+			rotation.x = 0
+			this.cubeScene.setCubeRotation("x", rotation.x)
 		}
-		else if (Math.abs(this.rotation.y) > MAX_ROTATION) {
-			let dir = this.rotation.y > 0 ? "left" : "right"
+		else if (Math.abs(rotation.y) > MAX_ROTATION) {
+			let dir = rotation.y > 0 ? "left" : "right"
 			this.setPage(navs[navs[this.curPage][dir]])
-			this.rotation.y = 0
-			this.cubeScene.setCubeRotation("y", this.rotation.y)
+			rotation.y = 0
+			this.cubeScene.setCubeRotation("y", rotation.y)
 		}
 		else {
-			this.cubeScene.setCubeRotation("x", this.rotation.x)
-			this.cubeScene.setCubeRotation("y", this.rotation.y)
+			this.cubeScene.setCubeRotation("x", rotation.x)
+			this.cubeScene.setCubeRotation("y", rotation.y)
 		}
+		this.eventManager.setRotation(rotation)
 	}
 
 	setPage(page) {
@@ -116,40 +115,6 @@ class Main {
 		this.backgroundScene.setCameraProjection( -width, width, 1, -height * height)
 		this.cubeScene.setCameraAspectRatio(window.innerWidth / window.innerHeight)
 		this.renderer.setSize(window.innerWidth, window.innerHeight)
-	}
-
-	onMouseMove(event) {
-		if (this.isMouseDown) {
-			if (this.rotationAxis == "none") {
-				if (event.clientX != this.mouse.x && event.clientY == this.mouse.y) {
-					this.rotationAxis = "y"
-				}
-				else if (event.clientX == this.mouse.x && event.clientY != this.mouse.y) {
-					this.rotationAxis = "x"
-				}
-			}
-			else if (this.rotationAxis == "x") {
-				this.rotation.x += (event.clientY - this.mouse.y) * 0.005
-			}
-			else if (this.rotationAxis == "y") {
-				this.rotation.y += (event.clientX - this.mouse.x) * 0.005
-			}
-			this.mouse.x = event.clientX
-			this.mouse.y = event.clientY
-			this.buttonPressing = -1
-			document.body.style.cursor = "auto"
-		}
-	}
-
-	onMouseDown(event) {
-		if (this.rotation.x == 0 && this.rotation.y == 0) this.rotationAxis = "none"
-		this.mouse.x = event.clientX
-		this.mouse.y = event.clientY
-		this.isMouseDown = true
-	}
-
-	onMouseUp(event) {
-		this.isMouseDown = false
 	}
 }
 
