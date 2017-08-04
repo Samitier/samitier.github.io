@@ -31,7 +31,29 @@ export default class CubeScene {
 		return this.cube.rotation
 	}
 
-	setCubeUVs(uv, page) {
+	setCubeUVs(page, site) {
+		let facesPerWidth = site.texture.image.width / site.faceSize
+
+		// Top
+		let topPosition = site.pages[page.navigation[0]].position
+		this.cube.geometry.faceVertexUvs[0][4] = [uv[page.top][3], uv[page.top][0], uv[page.top][2]];
+		this.cube.geometry.faceVertexUvs[0][5] = [uv[page.top][0], uv[page.top][1], uv[page.top][2]];
+		
+		// Right
+		this.cube.geometry.faceVertexUvs[0][0] = [uv[page.right][3], uv[page.right][0], uv[page.right][2]];
+		this.cube.geometry.faceVertexUvs[0][1] = [uv[page.right][3], uv[page.right][0], uv[page.right][2]];
+
+		var uv     = { main : [new Vector2(0, .75), new Vector2(.125, .75), new Vector2(.125, 1),new Vector2(0, 1)],
+
+cube.geometry.faceVertexUvs[0][0] = [uv[page.right][3], uv[page.right][0], uv[page.right][2]];
+	cube.geometry.faceVertexUvs[0][1] = [uv[page.right][0], uv[page.right][1], uv[page.right][2]];
+	cube.geometry.faceVertexUvs[0][2] = [uv[page.left][3], uv[page.left][0], uv[page.left][2]];
+	cube.geometry.faceVertexUvs[0][3] = [uv[page.left][0], uv[page.left][1], uv[page.left][2]];
+	cube.geometry.faceVertexUvs[0][6] = [uv[page.bottom][3], uv[page.bottom][0], uv[page.bottom][2]];
+	cube.geometry.faceVertexUvs[0][7] = [uv[page.bottom][0], uv[page.bottom][1], uv[page.bottom][2]];
+	cube.geometry.faceVertexUvs[0][8] = [uv[page.front][3], uv[page.front][0], uv[page.front][2]];
+	cube.geometry.faceVertexUvs[0][9] = [uv[page.front][0], uv[page.front][1], uv[page.front][2]];
+
 		for (let i = 0; i < 10; ++i) {
 			let isOdd = i%2 != 0,
 				side = i <= 1 ? "right" : i <= 3 ? "left" : i <= 5 ? "top" : i <= 7 ? "bottom" : "front" 

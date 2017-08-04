@@ -14,7 +14,7 @@
 	],
 
 	"texture": "/pages/pages.png",
-	"square-size": 500,
+	"faceSize": 500,
 	
 	"pages": {
 		"main": { 

@@ -1,22 +1,43 @@
 import {
 	Raycaster, Vector2, PlaneGeometry, Mesh, MeshBasicMaterial,
 	Scene, OrthographicCamera, PerspectiveCamera, WebGLRenderer,
-	BoxGeometry, ImageUtils, DefaultLoadingManager
+	BoxGeometry, ImageUtils, DefaultLoadingManager, TextureLoader
 } from "three"
 
 import BackgroundScene from "./background-scene"
 import CubeScene from "./cube-scene"
 import MouseEvents from "./mouse-events"
 
+import site from "../../assets/site.json"
+
 const MAX_ROTATION = 1.5708
 
 class Main {
 
 	constructor () {
+		this.loadAssets()
+	}
+
+	loadAssets() {
+		let loader = new TextureLoader(),
+			path = "/assets"
+		this.cubeTexture = loader.load(path + site.texture)
+		this.backgroundTextures = site.backgrounds.map(b => loader.load(path + site.texture))
+		DefaultLoadingManager.onProgress = ( item, loaded, total ) => {
+			let percentile = Math.round(loaded/total*100)
+			document.getElementById("loading-text").innerHTML = `Loading: ${percentile}%`
+			if(loaded == total) {
+				document.getElementById("loading-div").style.display = 'none'
+				this.init()
+			}
+		}
+	}
+
+	init() {
 		// Scenes
-		this.backgroundScene = new BackgroundScene(bkgMain)
-		this.cubeScene = new CubeScene(pages)
-		this.setPage(navs.main)
+		this.backgroundScene = new BackgroundScene(this.backgroundTextures[0])
+		this.cubeScene = new CubeScene(this.cubeTexture)
+		this.setPage(0)
 
 		// Renderer
 		this.renderer = new WebGLRenderer()
@@ -100,9 +121,9 @@ class Main {
 		this.eventManager.setRotation(rotation)
 	}
 
-	setPage(page) {
-		this.curPage = page.front
-		this.cubeScene.setCubeUVs(uv, page)
+	setPage(pagePosition) {
+		this.currentPage = pagePosition
+		this.cubeScene.setCubeUVs(this.getCurrentPage, site)
 		this.backgroundScene.setBackgroundMap(0, page["background"])
 	}
 
@@ -112,6 +133,10 @@ class Main {
 		this.backgroundScene.setCameraProjection( -width, width, 1, -height * height)
 		this.cubeScene.setCameraAspectRatio(window.innerWidth / window.innerHeight)
 		this.renderer.setSize(window.innerWidth, window.innerHeight)
+	}
+
+	getCurrentPage() {
+		return site.pages.find(p => p.position == this.currentPage)
 	}
 }
 
