@@ -35,17 +35,19 @@ export default class CubeScene {
 
 	setCubeUVs(pageName, site) {
 		let page = site.pages[pageName],
-            faceWidthRatio = 1/(this.textureWidth / site.faceSize),
-            faceHeightRatio = 1/(this.textureHeight / site.faceSize),
+            facePerWidth = this.textureWidth / site.faceSize,
+            faceWidthRatio = 1 / facePerWidth,
+            facePerHeight = this.textureHeight / site.faceSize,
+            faceHeightRatio = 1 / facePerHeight,
             vertexUvs = [ 4, 0, 6, 2, 8 ]
-        
         for (let i = 0; i <= page.navigation.length; ++i) {
             let hPosition = i < page.navigation.length 
-                            ? site.pages[page.navigation[i] || "home"].position : page.position,
-                vPosition = Math.floor(hPosition/(this.textureWidth / site.faceSize)),
-                topx = hPosition * faceWidthRatio,
+                            ? site.pages[page.navigation[i] || "home"].position : page.position
+            let vPosition = Math.floor(hPosition / facePerWidth)
+            hPosition %= facePerWidth
+            let topx = hPosition * faceWidthRatio,
                 bottomx = (hPosition + 1) * faceWidthRatio,
-                topy = 1 - vPosition * faceHeightRatio,
+                topy = 1 - vPosition * faceHeightRatio, 
                 bottomy = 1 - ((vPosition + 1) * faceHeightRatio),
                 uvs = [
                     new Vector2(topx, bottomy),

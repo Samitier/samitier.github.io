@@ -1,4 +1,4 @@
-import { WebGLRenderer, DefaultLoadingManager, TextureLoader } from "three"
+import { WebGLRenderer, DefaultLoadingManager, ImageUtils } from "three"
 
 import BackgroundScene from "./background-scene"
 import CubeScene from "./cube-scene"
@@ -15,10 +15,9 @@ class Main {
 	}
 
 	loadAssets() {
-		let loader = new TextureLoader(),
-			path = "/assets"
-		this.cubeTexture = loader.load(path + site.texture)
-		this.backgroundTextures = site.backgrounds.map(b => loader.load(path + b))
+		let path = "/assets"
+		this.cubeTexture = ImageUtils.loadTexture(path + site.texture)
+		this.backgroundTextures = site.backgrounds.map(b => ImageUtils.loadTexture(path + b))
 		DefaultLoadingManager.onProgress = ( item, loaded, total ) => {
 			let percentile = Math.round(loaded/total*100)
 			document.getElementById("loading-text").innerHTML = `Loading: ${percentile}%`
