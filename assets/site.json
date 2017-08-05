@@ -8,7 +8,7 @@
 		"/bkg/bkgMotivations.jpg",
 		"/bkg/bkgSkills.jpg",
 		"/bkg/bkgEducation.jpg",
-		"/bkg/bkgVj.jpg",
+		"/bkg/bkgVj.png",
 		"/bkg/bkgWb.jpg",
 		"/bkg/bkgAndroid.jpg"
 	],
@@ -17,10 +17,10 @@
 	"faceSize": 500,
 	
 	"pages": {
-		"main": { 
+		"home": { 
 			"position": 0, 
 			"background": 0, 
-			"navigation": ["projects", "website", "me", "contact"] 
+			"navigation": ["projects", "contact", "me", "website"] 
 		},
 		"website": {
 			"position": 1, 
@@ -45,19 +45,19 @@
 		},
 		"skills": {
 			"position": 6,
-			"background": 8,
+			"background": 6,
 			"navigation": ["me", "", "", ""]
 		},
         "motivations": {
 			"position": 7,
-			"background": 9,
+			"background": 5,
 			"navigation": ["", "", "", "me"]
 		},
 
 		"projects": {
 			"position": 4, 
 			"background": 4, 
-			"navigation": ["", "games1", "", ""] 
+			"navigation": ["", "games0", "", ""] 
 		},
 		"games0": {
 			"position": 9,
