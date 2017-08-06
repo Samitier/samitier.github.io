@@ -2,6 +2,9 @@ const ROTATION_PER_PIXEL = 0.005
 
 export default class MouseEvents {
 
+    /**
+     *  Initializes all the events for the renderer 
+     */
 	constructor(renderer) {
 		// Movement control
 		this.rotation = { x: 0, y: 0 }
@@ -15,6 +18,10 @@ export default class MouseEvents {
 		renderer.domElement.addEventListener('mouseup', this.onMouseUp.bind(this))
 	}
 
+    /**
+     * When moving the mouse, we have to calculate which axis the client is rotating 
+     * (if they are pressing the mouse), and calculate the amount of rotation they are applying
+     */
 	onMouseMove(event) {
 		if (this.isMouseDown) {
 			if (this.rotationAxis == "none") {
@@ -37,6 +44,10 @@ export default class MouseEvents {
 		}
 	}
 
+    /**
+     * If the client is pressing the mouse, we start calculating the amount of rotation 
+     * they will do on mouse move
+     */
 	onMouseDown(event) {
 		if (this.rotation.x == 0 && this.rotation.y == 0) this.rotationAxis = "none"
 		this.mouse.x = event.clientX
@@ -44,7 +55,7 @@ export default class MouseEvents {
 		this.isMouseDown = true
 	}
 
-	onMouseUp(event) {
+	onMouseUp() {
 		this.isMouseDown = false
 	}
 
