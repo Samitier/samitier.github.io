@@ -62,27 +62,86 @@
 		"games0": {
 			"position": 8,
 			"background": 8,
-			"navigation": ["games4", "", "games1", "projects"]
+            "navigation": ["games4", "", "games1", "projects"],
+            "buttons": [{ 
+                "height": 0.073, 
+                "width": 0.34, 
+                "x": 0.08, 
+                "y": -0.288, 
+                "link": "https://www.youtube.com/watch?v=tVEEdebiVG8"
+            }]
 		},
 		"games1": {
 			"position": 9,
 			"background": 8,
-			"navigation": ["games0", "", "games2", "projects"]
+            "navigation": ["games0", "", "games2", "projects"],
+            "buttons":[
+                { 
+                    "height": 0.073, 
+                    "width": 0.34, 
+                    "x": 0.08, 
+                    "y": -0.288, 
+                    "link": "https://www.youtube.com/watch?v=Vp_X0DgzwpI"
+                }, {
+                    "height": 0.073, 
+                    "width": 0.34, 
+                    "x": -0.42, 
+                    "y": -0.288, 
+                    "link": "http://www.kongregate.com/games/lepka/mongo-the-shurmanos"
+                }
+            ]
 		},
 		"games2": {
 			"position": 10,
 			"background": 8,
-			"navigation": ["games1", "", "games3", "projects"]
+            "navigation": ["games1", "", "games3", "projects"],
+            "buttons":[
+                { 
+                    "height": 0.073, 
+                    "width": 0.34, 
+                    "x": 0.08, 
+                    "y": -0.288, 
+                    "link": "https://www.youtube.com/watch?v=U5m4ixkeEX0"
+                }, {
+                    "height": 0.073,
+                    "width": 0.34, 
+                    "x": -0.42, 
+                    "y": -0.288, 
+                    "link": "http://samitier.github.io/Snow-Bros-Reborn/"
+                }
+            ]
 		},
 		"games3": {
 			"position": 11,
 			"background": 8,
-			"navigation": ["games2", "", "games4", "projects"]
+            "navigation": ["games2", "", "games4", "projects"],
+            "buttons":[
+                {
+                    "height": 0.073, 
+                    "width": 0.34, 
+                    "x": 0.08, 
+                    "y":-0.288, 
+                    "link": "https://www.youtube.com/watch?v=5jJCd3k_l98"
+                },{
+                    "height": 0.073, 
+                    "width": 0.34, 
+                    "x": -0.42, 
+                    "y": -0.288, 
+                    "link": "https://github.com/albarralnunez/TowerDefense"
+                }
+            ]
 		},
 		"games4": {
 			"position": 12,
 			"background": 8,
-			"navigation": ["games3", "", "games0", "projects"]
+            "navigation": ["games3", "", "games0", "projects"],
+            "buttons":[{ 
+                "height": 0.073, 
+                "width": 0.34, 
+                "x": 0.08, 
+                "y": -0.288, 
+                "link": "https://www.youtube.com/channel/UCjI7xjQrVNpVbXngJEimwSQ"
+            }]
 		}
 	}
 }
