@@ -1,12 +1,14 @@
 import { WebGLRenderer, DefaultLoadingManager, ImageUtils } from "three"
 
+import { webGlSupport, isTouchDevice } from "./feature-detector"
 import BackgroundScene from "./background-scene"
 import CubeScene from "./cube-scene"
 import MouseEvents from "./mouse-events"
+import TouchEvents from "./touch-events"
+import { MAX_RESOLUTION, MAIN_PAGE } from "./constants.js"
 
 import site from "../../assets/site.json"
 
-import { MAX_RESOLUTION, MAIN_PAGE } from "./constants.js"
 
 const   MAX_ROTATION = 1.5708,
         FACE = {
@@ -15,13 +17,13 @@ const   MAX_ROTATION = 1.5708,
             bottom: 2,
             left: 3,
             front: 4
-        },
-        ANISOTROPIC_FILTERING = 8
+        }
 
 class Main {
 
 	constructor () {
-		this.loadAssets()
+        if (webGlSupport()) this.loadAssets()
+        else window.location.href = "https://github.com/Samitier"
 	}
 
     /** 
@@ -30,7 +32,6 @@ class Main {
 	loadAssets() {
 		let path = "/assets"
         this.cubeTexture = ImageUtils.loadTexture(path + site.texture)
-        this.cubeTexture.anisotropy = ANISOTROPIC_FILTERING
 		this.backgroundTextures = site.backgrounds.map(b => ImageUtils.loadTexture(path + b))
 		DefaultLoadingManager.onProgress = ( item, loaded, total ) => {
 			let percentile = Math.round(loaded / total * 100)
@@ -52,12 +53,17 @@ class Main {
 		this.setPage(MAIN_PAGE)
 
 		// Renderer
-		this.renderer = new WebGLRenderer({ antialias: true })
+		this.renderer = new WebGLRenderer()
 		this.renderer.setSize(window.innerWidth, window.innerHeight)
 		document.body.appendChild(this.renderer.domElement)
 
 		// Event registration
-		this.eventManager = new MouseEvents(this.renderer)
+        if(isTouchDevice()) {
+            this.eventManager = new TouchEvents(this.renderer)
+        }
+        else {
+            this.eventManager = new MouseEvents(this.renderer)
+        }
 		window.addEventListener('resize', this.onResize.bind(this), false)
 		
 		this.render()
