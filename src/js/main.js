@@ -50,7 +50,6 @@ class Main {
 		// Scenes
 		this.backgroundScene = new BackgroundScene(this.backgroundTextures[0])
 		this.cubeScene = new CubeScene(this.cubeTexture)
-		this.setPage(MAIN_PAGE)
 
 		// Renderer
 		this.renderer = new WebGLRenderer()
@@ -59,13 +58,14 @@ class Main {
 
 		// Event registration
         if(isTouchDevice()) {
-            this.eventManager = new TouchEvents(this.renderer)
+            this.eventManager = new TouchEvents(this.renderer, this.cubeScene)
         }
         else {
-            this.eventManager = new MouseEvents(this.renderer)
+            this.eventManager = new MouseEvents(this.renderer, this.cubeScene)
         }
 		window.addEventListener('resize', this.onResize.bind(this), false)
-		
+        
+        this.setPage(MAIN_PAGE)
 		this.render()
 	}
 
@@ -157,6 +157,7 @@ class Main {
             0, 
             this.backgroundTextures[ site.pages[this.currentPage].background ]
         )
+        this.eventManager.setCurrentPage(pageName || MAIN_PAGE)
 	}
 
     /**
