@@ -9,8 +9,7 @@
 		"/bkg/bkgSkills.jpg",
 		"/bkg/bkgEducation.jpg",
 		"/bkg/bkgVj.png",
-		"/bkg/bkgWb.jpg",
-		"/bkg/bkgAndroid.jpg"
+		"/bkg/bkgWb.jpg"
 	],
 
 	"texture": "/pages/pages.png",
@@ -44,12 +43,12 @@
 			"navigation": ["", "me", "", ""]
 		},
 		"skills": {
-			"position": 6,
+			"position": 11,
 			"background": 6,
 			"navigation": ["me", "", "", ""]
 		},
         "motivations": {
-			"position": 7,
+			"position": 17,
 			"background": 5,
 			"navigation": ["", "", "", "me"]
 		},
@@ -57,10 +56,10 @@
 		"projects": {
 			"position": 4, 
 			"background": 4, 
-			"navigation": ["", "games0", "", ""] 
+			"navigation": ["webdev0", "games0", "", "blog"] 
 		},
 		"games0": {
-			"position": 8,
+			"position": 6,
 			"background": 8,
             "navigation": ["games4", "", "games1", "projects"],
             "buttons": [{ 
@@ -72,7 +71,7 @@
             }]
 		},
 		"games1": {
-			"position": 9,
+			"position": 7,
 			"background": 8,
             "navigation": ["games0", "", "games2", "projects"],
             "buttons":[
@@ -92,7 +91,7 @@
             ]
 		},
 		"games2": {
-			"position": 10,
+			"position": 8,
 			"background": 8,
             "navigation": ["games1", "", "games3", "projects"],
             "buttons":[
@@ -112,7 +111,7 @@
             ]
 		},
 		"games3": {
-			"position": 11,
+			"position": 9,
 			"background": 8,
             "navigation": ["games2", "", "games4", "projects"],
             "buttons":[
@@ -132,7 +131,7 @@
             ]
 		},
 		"games4": {
-			"position": 12,
+			"position": 10,
 			"background": 8,
             "navigation": ["games3", "", "games0", "projects"],
             "buttons":[{ 
@@ -142,6 +141,18 @@
                 "y": -0.288, 
                 "link": "https://www.youtube.com/channel/UCjI7xjQrVNpVbXngJEimwSQ"
             }]
+        },
+
+        "blog": {
+			"position": 16,
+			"background": 0,
+			"navigation": ["", "projects", "", ""]
+		},
+
+        "webdev0": {
+			"position": 12,
+			"background": 9,
+			"navigation": ["", "", "projects", ""]
 		}
 	}
 }
