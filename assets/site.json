@@ -145,14 +145,29 @@
 
         "blog": {
 			"position": 16,
-			"background": 0,
+			"background": 1,
 			"navigation": ["", "projects", "", ""]
 		},
 
         "webdev0": {
 			"position": 12,
 			"background": 9,
-			"navigation": ["", "", "projects", ""]
-		}
+			"navigation": ["", "webdev1", "projects", "webdev3"]
+        },
+        "webdev1": {
+			"position": 13,
+			"background": 9,
+			"navigation": ["", "webdev2", "projects", "webdev0"]
+        },
+        "webdev2": {
+			"position": 14,
+			"background": 9,
+			"navigation": ["", "webdev3", "projects", "webdev2"]
+        },
+        "webdev3": {
+			"position": 15,
+			"background": 9,
+			"navigation": ["", "webdev0", "projects", "webdev2"]
+        }
 	}
 }
