@@ -152,22 +152,59 @@
         "webdev0": {
 			"position": 12,
 			"background": 9,
-			"navigation": ["", "webdev1", "projects", "webdev3"]
+            "navigation": ["", "webdev1", "projects", "webdev3"],
+            "buttons": [{
+                "height": 0.073, 
+                "width": 0.34, 
+                "x": -0.178, 
+                "y": -0.342, 
+                "link": "http://dhis2-hii.asfes.org/"
+            }]
         },
         "webdev1": {
 			"position": 13,
 			"background": 9,
-			"navigation": ["", "webdev2", "projects", "webdev0"]
+            "navigation": ["", "webdev2", "projects", "webdev0"],
+            "buttons":[
+                {
+                    "height": 0.073, 
+                    "width": 0.34, 
+                    "x": 0.08, 
+                    "y": -0.288, 
+                    "link": "https://github.com/Samitier/netCoreAngular2MessageBoard"
+                },{
+                    "height": 0.073, 
+                    "width": 0.34, 
+                    "x": -0.42, 
+                    "y": -0.288, 
+                    "link": "https://samitier.azurewebsites.net/"
+                }
+            ]
         },
         "webdev2": {
 			"position": 14,
 			"background": 9,
-			"navigation": ["", "webdev3", "projects", "webdev2"]
+            "navigation": ["", "webdev3", "projects", "webdev1"],
+            "buttons":[
+                {
+                    "height": 0.073, 
+                    "width": 0.34, 
+                    "x": 0.08, 
+                    "y": -0.288, 
+                    "link": "https://github.com/Samitier"
+                },{
+                    "height": 0.073, 
+                    "width": 0.34, 
+                    "x": -0.42, 
+                    "y": -0.288, 
+                    "link": "https://instadrink.herokuapp.com/"
+                }
+            ]
         },
         "webdev3": {
 			"position": 15,
 			"background": 9,
-			"navigation": ["", "webdev0", "projects", "webdev2"]
+            "navigation": ["", "webdev0", "projects", "webdev2"]
         }
 	}
 }
