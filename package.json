@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.23.0",
-    "three": "^0.69.0"
+    "three": "^0.137.0"
   },
   "scripts": {
     "build": "node_modules/.bin/webpack -p --env.release --progress --hide-modules",
